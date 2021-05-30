@@ -1,0 +1,78 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Salary prediction</title>
+    <style>
+        body {
+            background: #f5f5f5;
+        }
+        main {
+            max-width: 800px;
+            margin: 0 auto;
+            transform: translateY(30vh);
+        }
+        form {
+            background: white;
+            padding: 15px;
+            box-shadow: 0 0 5px rgba(0,0,0,0.3);
+        }
+        form div {
+            padding: 10px 0;
+        }
+        form label {
+            width: 150px;
+            display: inline-block;
+        }
+        button {
+            background: royalblue;
+            padding: 5px 15px;
+            color: white;
+            border: 0;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        button:hover {
+            opacity: 0.8;
+        }
+        hr {
+            border: 1px solid #eee;
+            margin: 20px 0;
+        }
+        .info {
+            background: #d9edf7;
+            padding: 15px;
+            margin-top: 15px;
+            border: 1px solid #bce8f1;
+        }
+        .info:empty {
+            display: none;
+        }
+    </style>
+  </head>
+  <body>
+    <main>
+        <form action="{{ url_for('predict') }}" method="POST">
+            <div>
+                <label for="experience">Experience*</label>
+                <input id="experience" name="experience" required
+                        type="number" min="0" max="100">
+            </div>
+            <div>
+                <label for="test_score">Test Score*</label>
+                <input id="test_score" name="test_score" required
+                        type="number" min="0" max="100">
+            </div>
+            <div>
+                <label for="interview_score">Interview Score*</label>
+                <input id="interview_score" name="interview_score" required
+                        type="number" min="0" max="100">
+            </div>
+            <hr>
+            <button type="submit">Predict</button>
+        </form>
+        <div class="info">{{ prediction }}</div>
+    </main>
+  </body>
+</html>
